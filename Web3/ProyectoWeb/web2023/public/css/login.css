@@ -13,4 +13,9 @@ body {
     color: #007bff; /* Color del título de la tarjeta */
 }
 
-/* Puedes agregar más estilos según sea necesario */
+/* Media query para hacer el formulario más responsivo en pantallas pequeñas */
+@media (max-width: 767px) {
+    .container {
+        margin-top: 70px; /* Ajusta el margen superior para dejar más espacio para el menú en pantallas pequeñas */
+    }
+}
