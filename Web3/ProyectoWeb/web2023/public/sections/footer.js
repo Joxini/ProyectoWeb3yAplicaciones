@@ -25,6 +25,7 @@ footer {
     margin-top: 20px; /* Espaciado superior del pie de página */
     padding: 10px 0; /* Espaciado interno del pie de página */
     background-color: #f8f9fa; /* Color de fondo del pie de página */
+    color: #6c757d;
 }
 </style>` 
     }     
