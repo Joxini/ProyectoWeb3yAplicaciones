@@ -33,5 +33,6 @@ class Menu extends HTMLElement{
     }
 }
 
+
 customElements.define('menu-component', Menu);
 

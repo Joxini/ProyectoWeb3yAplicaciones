@@ -30,3 +30,4 @@ btnInsUser.addEventListener('click', function () {
             alert("Error al agregar el nuevo usuario: " + error.message);
         });
 });
+

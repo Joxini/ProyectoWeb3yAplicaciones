@@ -1,0 +1,38 @@
+/* CSS para personalizar el formulario */
+body {
+    background-color: #f8f9fa; /* Color de fondo principal */
+}
+
+.container {
+    background-color: #ffffff; /* Color de fondo del contenedor */
+    border-radius: 8px; /* Bordes redondeados del contenedor */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra del contenedor */
+    padding: 20px; /* Espaciado interno del contenedor */
+    margin-top: 50px; /* Ajuste el margen superior según sea necesario */
+}
+
+h4 {
+    color: #007bff; /* Color del encabezado */
+}
+
+form {
+    margin-top: 30px; /* Ajuste el margen superior del formulario según sea necesario */
+}
+
+label {
+    font-weight: bold; /* Texto de etiqueta en negrita */
+    color: #343a40; /* Color del texto de etiqueta */
+}
+
+/* Estilo para el botón de registro */
+#btnInsUser {
+    background-color: #28a745; /* Color de fondo del botón */
+    border: none; /* Sin borde */
+}
+
+/* Estilo para el botón de cambio de modo */
+#toggleModeBtn {
+    background-color: #6c757d; /* Color de fondo del botón de cambio de modo */
+    border: none; /* Sin borde */
+}
+
