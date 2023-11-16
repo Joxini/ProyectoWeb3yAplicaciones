@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta value="no-cache, no-store, must-revalidate" name="no-chache">
+
     <!-- Font Awesome kit, basic kit york license -->
     <script src="https://kit.fontawesome.com/2c7bfef965.js" crossorigin="anonymous"></script>
 
@@ -20,7 +24,7 @@
     <!-- call menu and footer sections -->
     <script src="sections/menu.js" defer></script>
     <script src="sections/footer.js" defer></script>
-    <script src="js/user/isLogin.js" defer></script>
+   
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/10.5.2/firebase-app-compat.js"></script>
@@ -45,7 +49,6 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title text-center mb-4">Autenticación de Usuario</h4>
-                        <form>
                             <div class="mb-3">
                                 <label for="txtEmail" class="form-label">Correo electrónico:</label>
                                 <input type="text" class="form-control" id="txtEmail" required autofocus>
@@ -57,7 +60,6 @@
                             </div>
 
                             <button type="button" class="btn btn-primary" id="btnLogin">Autenticar Usuario</button>
-                        </form>
                     </div>
                 </div>
             </div>
