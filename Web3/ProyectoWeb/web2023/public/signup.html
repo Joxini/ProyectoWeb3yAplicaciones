@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta value="no-cache, no-store, must-revalidate" name="no-chache">
@@ -15,7 +16,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- Custom style -->
     <link rel="stylesheet" href="css/signup.css">
@@ -48,20 +49,25 @@
                 <form>
                     <div class="mb-3">
                         <label for="txtNombre" class="form-label">Nombre:</label>
-                        <input type="text" class="form-control" id="txtNombre">
+                        <input type="text" class="form-control" id="txtNombre" required autofocus>
                     </div>
 
                     <div class="mb-3">
                         <label for="txtEmail" class="form-label">Correo electrónico:</label>
-                        <input type="email" class="form-control" id="txtEmail">
+                        <input type="email" class="form-control" id="txtEmail" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="txtContra" class="form-label">Contraseña:</label>
-                        <input type="password" class="form-control" id="txtContra">
+                        <input type="password" class="form-control" id="txtContra" required>
                     </div>
 
-                    <button type="button" class="btn btn-primary" id="btnInsUser">Registrarse</button>
+
+                    <div class="d-flex flex-column align-items-center">
+                        <button type="button" class="btn btn-outline-primary mb-4" id="btnInsUser">Registrarme</button>
+                        <h4 class="card-iniciarsesion text-center">-----Ó Inicia Sesión-----</h4>
+                        <button type="button" class="btn btn-outline-success" id="btnLogin">Iniciar Sesión</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -73,13 +79,13 @@
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 
     <!-- load js code to register a new user  -->
     <script defer src="js/user/signup.js"></script>
 
-    
+
 </body>
 
 </html>

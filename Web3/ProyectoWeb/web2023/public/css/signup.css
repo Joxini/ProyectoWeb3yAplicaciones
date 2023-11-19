@@ -1,48 +1,56 @@
 /* CSS para personalizar el formulario */
 body {
-    background-color: #f8f9fa; /* Color de fondo principal */
-    margin: 0; /* Elimina el margen predeterminado del cuerpo */
-    padding-top: 100px; /* Ajuste el relleno superior según sea necesario para dejar espacio para el menú */
+    background-color: #f8f9fa;
+    /* Color de fondo principal */
+    margin: 0;
+    /* Elimina el margen predeterminado del cuerpo */
+    padding-top: 100px;
+    /* Ajuste el relleno superior según sea necesario para dejar espacio para el menú */
 }
 
 .container {
-    background-color: #ffffff; /* Color de fondo del contenedor */
-    border-radius: 8px; /* Bordes redondeados del contenedor */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra del contenedor */
-    padding: 20px; /* Espaciado interno del contenedor */
-    margin: 20px auto; /* Centra el contenedor y ajusta el margen */
-    max-width: 600px; /* Establece un ancho máximo para evitar que se extienda demasiado en pantallas grandes */
+    background-color: #ffffff;
+    /* Color de fondo del contenedor */
+    border-radius: 8px;
+    /* Bordes redondeados del contenedor */
+    box-shadow: 0 0 30px rgba(7, 7, 7, 0.1);
+    /* Sombra del contenedor */
+    padding: 20px;
+    /* Espaciado interno del contenedor */
+    margin: 20px auto;
+    /* Centra el contenedor y ajusta el margen */
+    max-width: 600px;
+    /* Establece un ancho máximo para evitar que se extienda demasiado en pantallas grandes */
 }
 
 h4 {
-    color: #007bff; /* Color del encabezado */
+    color: #007bff;
+    /* Color del encabezado */
 }
 
 form {
-    margin-top: 30px; /* Ajuste el margen superior del formulario según sea necesario */
+    margin-top: 30px;
+    /* Ajuste el margen superior del formulario según sea necesario */
+
 }
 
 label {
-    font-weight: bold; /* Texto de etiqueta en negrita */
-    color: #343a40; /* Color del texto de etiqueta */
+    font-weight: bold;
+    /* Texto de etiqueta en negrita */
+    color: #343a40;
+    /* Color del texto de etiqueta */
 }
 
-/* Estilo para el botón de registro */
-#btnInsUser {
-    background-color: #28a745; /* Color de fondo del botón */
-    border: none; /* Sin borde */
+.card-iniciarsesion {
+    color: rgb(76, 163, 98);
 }
 
-/* Estilo para el botón de cambio de modo */
-#toggleModeBtn {
-    background-color: #6c757d; /* Color de fondo del botón de cambio de modo */
-    border: none; /* Sin borde */
-}
+
 
 /* Media query para hacer el formulario más responsivo en pantallas pequeñas */
 @media (max-width: 767px) {
     .container {
-        margin-top: 70px; /* Ajusta el margen superior para dejar más espacio para el menú en pantallas pequeñas */
+        margin-top: 70px;
+        /* Ajusta el margen superior para dejar más espacio para el menú en pantallas pequeñas */
     }
 }
-

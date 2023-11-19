@@ -9,16 +9,10 @@ body {
     padding: 10%;
 }
 
-header{
-    text-align: center;
-}
-
 header {
     background-color: #007bff;
 }
 
-
 .container h1 {
     color: #007bff;
 }
-
