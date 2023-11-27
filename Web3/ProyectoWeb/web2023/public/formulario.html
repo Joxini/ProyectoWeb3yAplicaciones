@@ -45,7 +45,7 @@
     <main class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h4 class="text-center mb-4">Registrando nuevo usuario</h4>
+                <h4 class="text-center mb-4">Formulario</h4>
                 <form>
                     <div class="mb-3">
                         <label for="txtNombre" class="form-label">Nombre:</label>
@@ -64,7 +64,16 @@
 
                     <div class="mb-3">
                         <label for="schoolGrade" class="form-label">Grado escolar:</label>
-                        <input type="text" class="form-control" id="schoolGrade" required>
+                        <select class="form-select" id="schoolGrade" required>
+                            <option value="" disabled selected>Selecciona el grado escolar</option>
+                            <option value="Primero">Primero</option>
+                            <option value="Segundo">Segundo</option>
+                            <option value="Tercero">Tercero</option>
+                            <option value="Primero">Cuarto</option>
+                            <option value="Segundo">Quinto</option>
+                            <option value="Tercero">Sexto</option>
+                            
+                        </select>
                     </div>
 
                     <div class="mb-3">
@@ -78,9 +87,7 @@
                     </div>
 
                     <div class="d-flex flex-column align-items-center">
-                        <button type="button" class="btn btn-outline-primary mb-4" id="btnInsUser">Registrarme</button>
-                        <h4 class="card-iniciarsesion text-center">-----Ó Inicia Sesión-----</h4>
-                        <button type="button" class="btn btn-outline-success" id="btnLogin">Iniciar Sesión</button>
+                        <button type="button" class="btn btn-outline-primary mb-4" id="btnAceptar">Aceptar</button>
                     </div>
                 </form>
             </div>
