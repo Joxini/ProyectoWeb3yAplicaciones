@@ -23,8 +23,11 @@ class Menu extends HTMLElement{
                     <a class="nav-link" href="suppliers.html">Proveedores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="customers.html">Clientes</a>
-                </li>
+                   <a class="nav-link" href="customers.html">Clientes</a>
+                </li> 
+                <li class="nav-item">
+                   <a class="nav-link" href="formulario.html">Formulario</a>
+                </li> 
                 <li class="nav-item">
                     <a class="nav-link" href="#" onclick="salir()">Salir</a>
                 </li>
