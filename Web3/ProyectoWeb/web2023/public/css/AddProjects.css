@@ -1,0 +1,18 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+.container {
+    text-align: center;
+    padding: 10%;
+}
+
+header {
+    background-color: #007bff;
+}
+
+.container h1 {
+    color: #007bff;
+}

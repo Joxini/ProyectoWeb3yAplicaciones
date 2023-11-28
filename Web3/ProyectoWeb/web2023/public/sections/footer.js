@@ -7,7 +7,7 @@ class Footer extends HTMLElement{
 <div class="contact-info">
     <strong>Ubicados:</strong> Puntarenas<br/>
     <strong>eMail:</strong> <a href="mailto:lospoderosos41@gmail.com?subject=Solicito información">lospoderosos41@gmail.com</a><br />
-    <strong>Teléfonos:</strong> 85136696 ó 60381539
+    <strong>Teléfonos:</strong> +50685136696 ó +50660381539
 </div>
 
 <div class="course-info">

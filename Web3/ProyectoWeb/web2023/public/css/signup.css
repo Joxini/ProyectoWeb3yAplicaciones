@@ -45,6 +45,11 @@ label {
     color: rgb(76, 163, 98);
 }
 
+#imgSalida {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px; /* Adjust as needed */
+}
 
 
 /* Media query para hacer el formulario más responsivo en pantallas pequeñas */

@@ -11,6 +11,9 @@
     <meta http-equiv="cache-control" content="no-cache">
     <meta value="no-cache, no-store, must-revalidate" name="no-chache">
 
+    <!-- Línea para cargar jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <!-- Font Awesome kit, basic kit york license -->
     <script src="https://kit.fontawesome.com/2c7bfef965.js" crossorigin="anonymous"></script>
 
@@ -46,31 +49,26 @@
     <main class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title text-center mb-4">Autenticación de Usuario</h4>
-                        <form>
-                            <div class="mb-3">
-                                <label for="txtEmail" class="form-label">Correo electrónico:</label>
-                                <input type="text" class="form-control" id="txtEmail" required autofocus>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="txtContra" class="form-label">Contraseña:</label>
-                                <input type="password" class="form-control" id="txtContra" required>
-                            </div>
-
-
-                            <div class="d-flex flex-column align-items-center">
-                                <button type="button" class="btn btn-outline-primary mb-4" id="btnLogin">Autenticar
-                                    Usuario</button>
-                                <h4 class="card-registrarse text-center">------Ó registrate------</h4>
-                                <button type="button" class="btn btn-outline-success"
-                                    id="btnRegister">Registrarse</button>
-                            </div>
-                        </form>
+                <h4 class="card-title text-center mb-4">Autenticación de Usuario</h4>
+                <form>
+                    <div class="mb-3">
+                        <label for="txtEmail" class="form-label">Correo electrónico:</label>
+                        <input type="text" class="form-control" id="txtEmail" required autofocus>
                     </div>
-                </div>
+
+                    <div class="mb-3">
+                        <label for="txtContra" class="form-label">Contraseña:</label>
+                        <input type="password" class="form-control" id="txtContra" required>
+                    </div>
+
+
+                    <div class="d-flex flex-column align-items-center">
+                        <button type="button" class="btn btn-outline-primary mb-4" id="btnLogin">Autenticar
+                            Usuario</button>
+                        <h4 class="card-registrarse text-center">------Ó registrate------</h4>
+                        <button type="button" class="btn btn-outline-success" id="btnRegister">Registrarse</button>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
@@ -85,6 +83,22 @@
 
     <!-- load js code to storage data  -->
     <script defer src="js/user/login.js"></script>
+
+    <script>
+        // Evento para "Enter" en el campo de correo electrónico
+        function iniLogin() {
+            $('#txtEmail').on('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault(); // Evitar el envío del formulario
+                    $('#txtContra').focus(); // Enfocar el campo de contraseña
+                    console.log('Enter presionado en el campo de correo electrónico');
+                }
+            });
+        }
+
+        iniLogin();
+    </script>
+
 </body>
 
 </html>

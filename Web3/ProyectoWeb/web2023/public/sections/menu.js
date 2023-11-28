@@ -17,19 +17,13 @@ class Menu extends HTMLElement{
                     <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="categories.html">Categorías</a>
+                    <a class="nav-link" href="MyProjects.html">Mis proyectos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="suppliers.html">Proveedores</a>
+                    <a class="nav-link" href="AddProjects.html">Subir proyecto</a>
                 </li>
                 <li class="nav-item">
-                   <a class="nav-link" href="customers.html">Clientes</a>
-                </li> 
-                <li class="nav-item">
-                   <a class="nav-link" href="formulario.html">Formulario</a>
-                </li> 
-                <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="salir()">Salir</a>
+                    <a class="nav-link" href="#" onclick="salir()">Cerrar sesión</a>
                 </li>
             </ul>
         </div>
