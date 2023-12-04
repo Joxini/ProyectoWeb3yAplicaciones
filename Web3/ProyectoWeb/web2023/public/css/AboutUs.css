@@ -1,0 +1,98 @@
+body {
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #333;
+}
+
+
+
+.about-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.company-info {
+    margin-bottom: 20px;
+}
+
+.company-info h1 {
+    color: #000000;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.company-info p {
+    color: #000000;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; 
+}
+
+.social-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #000000;
+}
+
+.section-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px; 
+}
+
+.section-card {
+    flex: 1;
+    margin: 15px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.member-card {
+    flex: 1;
+    margin: 15px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+.member-card h2{
+    color: #000000;
+    font-size: 1.5em;
+}
+
+.member-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+
+.section-title {
+    color: #000000;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}

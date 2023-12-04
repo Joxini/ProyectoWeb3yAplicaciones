@@ -23,6 +23,9 @@ class Menu extends HTMLElement{
                     <a class="nav-link" href="AddProjects.html">Subir proyecto</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="aboutUs.html">About Us</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#" onclick="salir()">Cerrar sesión</a>
                 </li>
             </ul>
