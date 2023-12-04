@@ -12,10 +12,14 @@ body {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     text-align: center;
+}
+
+.Titulo{
+    font-size: 1.5em;
 }
 
 .company-info {
@@ -34,22 +38,23 @@ body {
     font-size: 1.1em;
 }
 
-.social-links {
+.social-links2 {
     display: flex;
     justify-content: center;
     margin-top: 20px; 
 }
 
-.social-links a {
+.social-links2 a {
     margin: 0 10px;
     text-decoration: none;
-    color: #000000;
+    color: rgb(23, 51, 134);
     font-weight: bold;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.social-links a:hover {
-    color: #000000;
+.social-links2 a:hover {
+    color: rgb(109, 109, 109);
+    transform: scale(1.1) rotate(0deg);
 }
 
 .section-container {

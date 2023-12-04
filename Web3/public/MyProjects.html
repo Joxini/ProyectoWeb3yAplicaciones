@@ -28,6 +28,8 @@
     <script src="sections/menu.js" defer></script>
     <script src="sections/footer.js" defer></script>
     <script src="js/user/isLogin.js" defer></script>
+    <!-- Custom JavaScript for Firebase data retrieval and rendering -->
+    <script src="js/Investigacion/ListMyProjects.js" defer></script>
 
     <title>Proyecto</title>
 </head>
@@ -38,7 +40,10 @@
     </header>
 
     <div class="container mt-5">
-        <h1 class="display-4">Pagina de MyProjects</h1>
+        <h1 class="display-4">Página de MyProjects</h1>
+        <ul id="projectList" class="list-group">
+            <!-- Project items will be dynamically added here -->
+        </ul>
     </div>
 
     <footer class="mt-5">
