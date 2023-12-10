@@ -1,46 +1,53 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const projectList = document.getElementById('projectList');
-    const searchInput = document.getElementById('searchInput');
+var db = firebase.apps[0].firestore();
+const projectList = document.querySelector('#projectList');
 
-    // Initialize Firebase
-    firebase.initializeApp({
-        // Your Firebase configuration
-    });
-
-    const database = firebase.database();
-    const projectsRef = database.ref('projects');
-
-    // Event listener for search input
-    searchInput.addEventListener('input', function () {
-        renderProjects();
-    });
-
-    // Initial rendering
-    renderProjects();
-
-    function renderProjects() {
-        projectsRef.once('value', function (snapshot) {
-            const projects = snapshot.val();
-
-            // Clear previous projects
-            projectList.innerHTML = '';
-
-            // Filter projects based on search input
-            const filteredProjects = filterProjects(projects);
-
-            // Render filtered projects
-            filteredProjects.forEach(project => {
-                const listItem = document.createElement('li');
-                listItem.className = 'list-group-item';
-                listItem.textContent = `${project.name} - ${project.subject}`;
-                projectList.appendChild(listItem);
-            });
+// Event listener para los clics en el proyecto
+projectList.addEventListener('click', function (event) {
+    const target = event.target;
+    if (target.tagName === 'A' && target.getAttribute('data-id')) {
+        // Obtenemos el ID del proyecto desde el atributo data-id
+        const projectId = target.getAttribute('data-id');
+        
+        // Obtenemos los datos del proyecto desde Firestore
+        db.collection("projects").doc(projectId).get().then(function(doc) {
+            if (doc.exists) {
+                // Almacenamos los datos en localStorage
+                localStorage.setItem('selectedProject', JSON.stringify(doc.data()));
+                
+                // Redirigimos a la página de visualización
+                window.location.href = 'VisualizarProject.html';
+            } else {
+                console.log("No existe el documento del proyecto");
+            }
+        }).catch(function(error) {
+            console.error("Error al obtener datos del proyecto:", error);
         });
     }
-
-    function filterProjects(projects) {
-        const searchTerm = searchInput.value.toLowerCase();
-        return Object.values(projects || {})
-            .filter(project => project.name.toLowerCase().includes(searchTerm));
-    }
 });
+
+// Obtener y mostrar la lista de proyectos
+db.collection("projects").orderBy("title").get().then(function(querySnapshot){ 
+    projectList.innerHTML = ""; // Limpiar la lista
+
+    var table = "<table class=\"table table-striped\">" +
+                "    <thead>" +
+                "        <tr>" +
+                "            <td><strong>Título</strong></td>" +
+                "            <td><strong>Área</strong></td>" +
+                "            <td colspan='2' align='center'><strong>Acciones</strong></td>" +
+                "        </tr>" +
+                "    </thead><tbody>";
+
+    querySnapshot.forEach(function(doc){
+        table += '<tr>'
+        table += '<td>'+ doc.data().title +'</td>';
+        table += '<td>'+ doc.data().area  +'</td>';
+        table += '<td align="center"><a href="#" data-id="' + doc.id + '">Visualizar<a/></td>';
+        table += '</tr>';
+    });
+
+    table += "</tbody></table>";
+    projectList.innerHTML = table;
+});
+
+

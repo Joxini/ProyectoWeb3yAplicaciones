@@ -12,36 +12,13 @@ service cloud.firestore {
       allow update: if true;
       allow delete: if false;
     }
-  }
-  match /projects/{document=**} {
-      allow read: if true;
-      allow create: if request.resource.data.title is string &&
-                       request.resource.data.area is string &&
-                       request.resource.data.description is string &&
-                       request.resource.data.conclusions is string &&
-                       request.resource.data.recommendations is string &&
-                       request.resource.data.pdfUrl is string &&
-                       request.resource.data.imageUrls is list &&
-                       isImageUrlsValid(request.resource.data.imageUrls);
-      allow update: if request.resource.data.title is string &&
-                       request.resource.data.area is string &&
-                       request.resource.data.description is string &&
-                       request.resource.data.conclusions is string &&
-                       request.resource.data.recommendations is string &&
-                       request.resource.data.pdfUrl is string &&
-                       request.resource.data.imageUrls is list &&
-                       isImageUrlsValid(request.resource.data.imageUrls);
-      allow delete: if false;
-      
-      function isImageUrlsValid(imageUrls) {
-        return imageUrls is list &&
-               size(imageUrls) <= 6 &&  // Permite hasta 6 imágenes
-               isImageUrlsValidRecursive(imageUrls);
-      }
 
-      function isImageUrlsValidRecursive(imageUrls) {
-        return size(imageUrls) == 0 || 
-               (isString(head(imageUrls)) && isImageUrlsValidRecursive(tail(imageUrls)));
-      }
+    match /{projects}/{document=**} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if request.auth != null &&
+                               request.auth.uid == resource.data.userId;
     }
+  }
 }
+
