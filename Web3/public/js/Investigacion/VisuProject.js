@@ -1,3 +1,4 @@
+const db = firebase.firestore();
 document.addEventListener('DOMContentLoaded', function () {
     // Obtener los datos del proyecto almacenados en localStorage
     const selectedProjectData = localStorage.getItem('selectedProject');
@@ -48,6 +49,72 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.log("No se encontraron datos del proyecto en localStorage");
     }
+    
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const commentForm = document.getElementById('commentForm');
+        const commentInput = document.getElementById('commentInput');
+        const commentsList = document.getElementById('commentsList');
+    
+        function renderComment(comment) {
+            const commentElement = document.createElement('div');
+            commentElement.classList.add('comment', 'mb-2', 'p-2');
+            commentElement.innerHTML = `
+                <p>${comment.text}</p>
+                <small>${comment.timestamp.toDate().toLocaleString()}</small>
+            `;
+            commentsList.appendChild(commentElement);
+        }
+    
+        function submitComment() {
+            const commentText = commentInput.value.trim();
+    
+            if (commentText !== "") {
+                const timestamp = new Date();
+    
+                // Asumiendo que ya tienes inicializado Firebase y Firestore
+                const db = firebase.firestore();
+                const projectID = 'tu_project_id'; // Reemplaza con el ID de tu proyecto
+                const commentsRef = db.collection('projects').doc(projectID).collection('comments');
+    
+                commentsRef.add({
+                    text: commentText,
+                    timestamp: firebase.firestore.Timestamp.fromDate(timestamp)
+                })
+                .then(docRef => {
+                    console.log('Comentario añadido con ID:', docRef.id);
+                    // Limpia el área de entrada de comentarios
+                    commentInput.value = "";
+                })
+                .catch(error => {
+                    console.error('Error al añadir el comentario:', error);
+                });
+            }
+        }
+    
+        commentForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            submitComment();
+        });
+    
+        // Escuchar cambios en la colección de comentarios y actualizar la interfaz de usuario
+        const projectID = 'tu_project_id'; // Reemplaza con el ID de tu proyecto
+        const commentsRef = firebase.firestore().collection('projects').doc(projectID).collection('comments');
+    
+        commentsRef.orderBy('timestamp', 'asc').onSnapshot(snapshot => {
+            commentsList.innerHTML = ''; // Limpiar la lista antes de renderizar los nuevos comentarios
+            snapshot.forEach(doc => {
+                const commentData = doc.data();
+                renderComment(commentData);
+            });
+        });
+    });
+    
+
+
+
+
+
 
 
     const btnHome = document.getElementById('btnHome');
