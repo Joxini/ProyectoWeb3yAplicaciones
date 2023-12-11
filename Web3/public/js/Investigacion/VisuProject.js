@@ -42,6 +42,70 @@ document.addEventListener('DOMContentLoaded', function () {
                 imgElement.style.margin = '5px'; // Margen entre imágenes
                 imgSalida.appendChild(imgElement);
             });
+
+            const commentForm = document.getElementById('commentForm');
+            const commentInput = document.getElementById('commentInput');
+            const commentsList = document.getElementById('commentsList');
+
+            // Extrae el email del usuario que esta autenticado
+            const auth = firebase.auth();
+            let EmailUser = "";
+            
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                    EmailUser = user.email;
+                } else {
+                    // El usuario no está autenticado
+                    console.log("Usuario no autenticado");
+                }
+            });
+
+            // Manejar el envío del comentario
+            commentForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                // Obtener el contenido del comentario
+                const commentContent = commentInput.value;
+
+                // Añadir el comentario al Firestore
+                db.collection('comments').add({
+                    content: commentContent,
+                    projectId: projectData.id, // Agregar el ID del proyecto al comentario
+                    emailUser: EmailUser,
+                })
+                    .then(() => {
+                        // Limpiar el campo de entrada después de agregar el comentario
+                        commentInput.value = '';
+                    })
+                    .catch((error) => {
+                        console.error("Error al agregar el comentario:", error);
+                    });
+            });
+
+
+
+
+            // Mostrar los comentarios automáticamente
+            db.collection('comments')
+                .where('projectId', '==', projectData.id) // Filtrar comentarios por el ID del proyecto
+                .orderBy('projectId', 'desc') // Ordenar por el campo 'id' en orden descendente
+                .onSnapshot((snapshot) => {
+                    commentsList.innerHTML = ''; // Limpiar la lista de comentarios antes de agregar los nuevos
+
+                    snapshot.forEach((doc) => {
+                        const commentData = doc.data();
+
+                        // Crear un elemento para mostrar el comentario
+                        const commentElement = document.createElement('div');
+                        commentElement.innerHTML = `<strong>USUARIO: ${commentData.emailUser}</strong><br>COMENTARIO: ${commentData.content}<hr>`;
+                        commentsList.appendChild(commentElement);
+                    });
+                });
+
+
+
+
+
         } else {
             console.error('La propiedad imageUrls no es un array o no está definida en selectedProjectData.');
         }
@@ -49,72 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.log("No se encontraron datos del proyecto en localStorage");
     }
-    
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const commentForm = document.getElementById('commentForm');
-        const commentInput = document.getElementById('commentInput');
-        const commentsList = document.getElementById('commentsList');
-    
-        function renderComment(comment) {
-            const commentElement = document.createElement('div');
-            commentElement.classList.add('comment', 'mb-2', 'p-2');
-            commentElement.innerHTML = `
-                <p>${comment.text}</p>
-                <small>${comment.timestamp.toDate().toLocaleString()}</small>
-            `;
-            commentsList.appendChild(commentElement);
-        }
-    
-        function submitComment() {
-            const commentText = commentInput.value.trim();
-    
-            if (commentText !== "") {
-                const timestamp = new Date();
-    
-                // Asumiendo que ya tienes inicializado Firebase y Firestore
-                const db = firebase.firestore();
-                const projectID = 'tu_project_id'; // Reemplaza con el ID de tu proyecto
-                const commentsRef = db.collection('projects').doc(projectID).collection('comments');
-    
-                commentsRef.add({
-                    text: commentText,
-                    timestamp: firebase.firestore.Timestamp.fromDate(timestamp)
-                })
-                .then(docRef => {
-                    console.log('Comentario añadido con ID:', docRef.id);
-                    // Limpia el área de entrada de comentarios
-                    commentInput.value = "";
-                })
-                .catch(error => {
-                    console.error('Error al añadir el comentario:', error);
-                });
-            }
-        }
-    
-        commentForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            submitComment();
-        });
-    
-        // Escuchar cambios en la colección de comentarios y actualizar la interfaz de usuario
-        const projectID = 'tu_project_id'; // Reemplaza con el ID de tu proyecto
-        const commentsRef = firebase.firestore().collection('projects').doc(projectID).collection('comments');
-    
-        commentsRef.orderBy('timestamp', 'asc').onSnapshot(snapshot => {
-            commentsList.innerHTML = ''; // Limpiar la lista antes de renderizar los nuevos comentarios
-            snapshot.forEach(doc => {
-                const commentData = doc.data();
-                renderComment(commentData);
-            });
-        });
-    });
-    
-
-
-
-
-
 
 
     const btnHome = document.getElementById('btnHome');
@@ -126,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-
 
 
 

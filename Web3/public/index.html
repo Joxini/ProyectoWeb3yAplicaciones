@@ -50,12 +50,15 @@
 
     <div class="container mt-5">
         <h1 class="display-4">Bienvenido a la pagina principal</h1>
-        <div class="mb-3">
-            <input type="text" class="form-control" id="searchInput" placeholder="Buscar por nombre del proyecto">
-        </div>
-        <br>
-        <div id="projectList"></div>
-        <br>
+        <label for="areaFilter" class="form-label">Filtrar por área:</label>
+        <select class="form-select" id="areaFilter">
+            <option value="">Todas las áreas</option>
+            <!-- Las opciones del dropdown se llenarán dinámicamente con áreas únicas -->
+        </select>
+    </div>
+    <br>
+    <div id="projectList"></div>
+    <br>
     </div>
 
     <footer class="mt-5">

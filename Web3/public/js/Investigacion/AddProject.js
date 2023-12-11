@@ -26,8 +26,10 @@ btnSubmitProject.addEventListener('click', async () => {
         try {
             // Crear un objeto para almacenar los datos del proyecto
             const UserAuth = auth.currentUser.uid
+            const projectId = generateUniqueId()
 
             const projectData = {
+                id: projectId,
                 title: txtTitle.value,
                 area: txtArea.value,
                 description: txtDescription.value,

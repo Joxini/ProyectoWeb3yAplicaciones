@@ -1,44 +1,49 @@
+// Asegúrate de tener una referencia a firebase.auth()
+const auth = firebase.auth();
+
+// Asegúrate de tener una referencia a firebase.firestore()
+var db = firebase.apps[0].firestore();
+
 document.addEventListener('DOMContentLoaded', function () {
-    const projectList = document.getElementById('projectList');
+    // Obtener el usuario autenticado actualmente
+    const user = auth.currentUser;
 
-    // Initialize Firebase
-    firebase.initializeApp({
-        // Your Firebase configuration
-    });
+    if (user) {
+        // Filtrar proyectos por el ID del usuario autenticado
+        db.collection('projects')
+            .where('userId', '==', user.idemp)
+            .get()
+            .then(function (querySnapshot) {
+                const projectList = document.getElementById('projectList');
 
-    const auth = firebase.auth();
-    const database = firebase.database();
-    const projectsRef = database.ref('projects');
+                // Limpiar la lista
+                projectList.innerHTML = '';
 
-    // Event listener for authentication state changes
-    auth.onAuthStateChanged(function (user) {
-        if (user) {
-            // User is signed in
-            renderUserProjects(user.uid);
-        } else {
-            // User is signed out
-            console.log('User is signed out');
-        }
-    });
+                // Verificar si hay proyectos asociados al usuario
+                if (querySnapshot.size > 0) {
+                    querySnapshot.forEach(function (doc) {
+                        const projectData = doc.data();
 
-    function renderUserProjects(userId) {
-        projectsRef.orderByChild('userId').equalTo(userId).once('value', function (snapshot) {
-            const userProjects = snapshot.val();
+                        // Crear un elemento para mostrar el proyecto
+                        const projectElement = document.createElement('li');
+                        projectElement.className = 'list-group-item';
+                        projectElement.textContent = projectData.title;
 
-            // Clear previous projects
-            projectList.innerHTML = '';
-
-            // Render user projects
-            if (userProjects) {
-                Object.values(userProjects).forEach(project => {
-                    const listItem = document.createElement('li');
-                    listItem.className = 'list-group-item';
-                    listItem.textContent = `${project.name} - ${project.subject}`;
-                    projectList.appendChild(listItem);
-                });
-            } else {
-                console.log('No projects found for the user');
-            }
-        });
+                        // Agregar el proyecto a la lista
+                        projectList.appendChild(projectElement);
+                    });
+                } else {
+                    // No se encontraron proyectos asociados al usuario
+                    const noProjectsMessage = document.createElement('p');
+                    noProjectsMessage.textContent = 'No se encontraron proyectos asociados.';
+                    projectList.appendChild(noProjectsMessage);
+                }
+            })
+            .catch(function (error) {
+                console.error('Error al obtener proyectos:', error);
+            });
+    } else {
+        // El usuario no está autenticado
+        console.log('Usuario no autenticado');
     }
 });
