@@ -1,6 +1,8 @@
 class Menu extends HTMLElement {
     constructor() {
         super();
+        this.isOpen = false; // Agregar un estado de seguimiento para el menú
+
         this.innerHTML = `
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
                 <div class="container-fluid">
@@ -34,23 +36,30 @@ class Menu extends HTMLElement {
             </nav>
         `;
 
-        // Inicializar Bootstrap Collapse
+        // Agregar eventos clic al botón del menú
+        const navbarToggler = this.querySelector('.navbar-toggler');
         const navbarCollapse = this.querySelector('.navbar-collapse');
-        new bootstrap.Collapse(navbarCollapse);
+
+        navbarToggler.addEventListener('click', () => {
+            // Llamar al método toggleMenu para alternar el estado del menú
+            this.toggleMenu();
+        });
 
         // Resaltar la opción seleccionada
         this.highlightSelectedOption();
-        
-        // Agregar eventos para las transiciones
-        navbarCollapse.addEventListener('show.bs.collapse', () => {
-            navbarCollapse.style.transition = 'max-height 0.3s ease-out';
-            navbarCollapse.style.maxHeight = '500px'; // Ajusta la altura máxima según sea necesario
-        });
+    }
 
-        navbarCollapse.addEventListener('hide.bs.collapse', () => {
-            navbarCollapse.style.transition = 'max-height 0.3s ease-in';
-            navbarCollapse.style.maxHeight = '0';
-        });
+    toggleMenu() {
+        const navbarCollapse = this.querySelector('.navbar-collapse');
+
+        // Alternar el estado del menú y aplicar la clase 'show' según sea necesario
+        if (this.isOpen) {
+            new bootstrap.Collapse(navbarCollapse, { toggle: false });
+        } else {
+            new bootstrap.Collapse(navbarCollapse);
+        }
+
+        this.isOpen = !this.isOpen; // Invertir el estado del menú
     }
 
     highlightSelectedOption() {

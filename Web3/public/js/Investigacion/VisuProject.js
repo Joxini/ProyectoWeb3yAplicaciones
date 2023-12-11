@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Crear un contenedor para las imágenes
             const imgContainer = document.createElement('div');
             imgContainer.classList.add('img-container');
-            
+
             projectData.imageUrls.forEach(imageUrl => {
                 const imgElement = document.createElement('img');
                 imgElement.src = imageUrl;
@@ -49,6 +49,15 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("No se encontraron datos del proyecto en localStorage");
     }
 
+
+    const btnHome = document.getElementById('btnHome');
+
+    if (btnHome) {
+        btnHome.addEventListener('click', function () {
+            // Redirigir a la página principal
+            window.location.href = 'index.html';
+        });
+    }
 });
 
 
