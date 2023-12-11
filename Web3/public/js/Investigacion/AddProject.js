@@ -1,7 +1,11 @@
 // Crear variables locales para la base de datos Firestore, autenticación y almacenamiento
+
 var auth = firebase.auth();
 var db = firebase.firestore();
 var storage = firebase.storage();
+
+
+
 
 // Resto del código sin cambios
 const txtTitle = document.querySelector('#title');
@@ -22,7 +26,7 @@ btnSubmitProject.addEventListener('click', async () => {
         try {
             // Crear un objeto para almacenar los datos del proyecto
             const UserAuth = auth.currentUser.uid
-        
+
             const projectData = {
                 title: txtTitle.value,
                 area: txtArea.value,
@@ -33,12 +37,21 @@ btnSubmitProject.addEventListener('click', async () => {
             };
 
             // Subir el archivo PDF a Storage
-            const pdfRef = storage.ref(`projectPDFs/${auth.currentUser.uid}`);
+            const pdfRef = storage.ref(`projectPDFs`).child(generateUniqueId()); // Use a function to generate a unique ID
             const pdfSnapshot = await pdfRef.put(pdfUpload.files[0]);
+
             // Obtener la URL del PDF después de subirlo
             const pdfUrl = await pdfSnapshot.ref.getDownloadURL();
+
             // Agregar la URL del PDF al objeto de datos del proyecto
             projectData.pdfUrl = pdfUrl;
+
+            // Function to generate a unique ID
+            function generateUniqueId() {
+                // Use a library or a custom logic to generate a unique ID
+                // Here's a simple example using the current timestamp
+                return Date.now().toString();
+            }
 
             // Subir las imágenes a Storage
             const imagesRef = storage.ref(`projectImages/${auth.currentUser.uid}`);
