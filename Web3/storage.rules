@@ -3,15 +3,17 @@ rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
     match /projectPDFs/{projectId}/{allPaths=**} {
-      allow read, write: if request.auth != null && request.auth.uid == projectId;
+      allow read, write: if true;
     }
 
     match /projectImages/{userId}/{allPaths=**} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+    allow read: if true;
+  
+    // Requerir autenticación para escritura
+    allow write: if request.auth != null && request.auth.uid == userId;
     }
 
     match /userImages/{userId}/{allPaths=**} {
-      // Permitir la escritura para usuarios autenticados o no autenticados
       allow read, write: if true;
     }
   }

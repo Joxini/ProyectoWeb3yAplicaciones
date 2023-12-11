@@ -25,9 +25,30 @@ document.addEventListener('DOMContentLoaded', function () {
             pdfViewer.src = ''; // or set a default PDF URL
         }
 
+        const imgSalida = document.querySelector('.imgSalida');
+
+        if (projectData.imageUrls && Array.isArray(projectData.imageUrls)) {
+
+            // Crear un contenedor para las imágenes
+            const imgContainer = document.createElement('div');
+            imgContainer.classList.add('img-container');
+            
+            projectData.imageUrls.forEach(imageUrl => {
+                const imgElement = document.createElement('img');
+                imgElement.src = imageUrl;
+                // Ajustar el tamaño de la imagen y agregar estilos
+                imgElement.style.width = '100px'; // Puedes ajustar el tamaño según tus necesidades
+                imgElement.style.margin = '5px'; // Margen entre imágenes
+                imgSalida.appendChild(imgElement);
+            });
+        } else {
+            console.error('La propiedad imageUrls no es un array o no está definida en selectedProjectData.');
+        }
+
     } else {
         console.log("No se encontraron datos del proyecto en localStorage");
     }
+
 });
 
 
